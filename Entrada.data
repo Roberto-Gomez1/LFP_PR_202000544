@@ -1,6 +1,14 @@
-JuNiO : 2020 = (
-["producto 1",25.55,33];
-["producto 2",35.75,10];
-["producto 3",15,170];
-["producto 4",50,13];
+MAYO:2022=(
+["producto 1",2.50,10];
+["producto 2",3,20];
+["producto 3",3.50,15];
+["producto 4",4,23];
+["producto 5",4.50,5];
+["producto 6",5,45];
+["producto 7",5.55,30];
+["producto 8",6.13,21];
+["producto 9",6.87,16];
+["producto 10",7.23,2];
+["producto 11",8.42,8];
+["producto 12",9,50];
 )

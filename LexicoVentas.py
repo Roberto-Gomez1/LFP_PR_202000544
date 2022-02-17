@@ -17,18 +17,18 @@ class LexicoVentas():
         self.estado = 0
         self.lexema = ''
         self.tokens= []
-        self.lista=[]
+        #self.lista = []
         entrada = entrada + "&"
         actual = ''
         actu = ''
         longitud = len(entrada)
-        for j in range(longitud):
+        '''for j in range(longitud):
             actu = entrada[j]
             if self.estado == 0:
                 if actu == ':':
                     self.lexema += actu
                     self.AgregarToken(TypeTokenVentas.DOS_PUNTOS.name)
-                    continue
+                    continue'''
 
         for i in range(longitud):
             actual = entrada[i]
@@ -71,15 +71,15 @@ class LexicoVentas():
                     self.AgregarToken(TypeTokenVentas.COMA.name)
                     continue
                 elif actual == ':':
-                    self.estado = 6
                     self.lexema += actual
+                    self.AgregarToken(TypeTokenVentas.DOS_PUNTOS.name)
                     continue
                 elif actual == ';':
                     self.lexema += actual
                     self.AgregarToken(TypeTokenVentas.PUNTO_COMA.name)
                     continue
                 elif actual =='&':
-                    print( 'ANALISIS TERMINADO')
+                    print( 'ANALISIS VENTAS TERMINADO')
                     continue
                 elif actual == ' ' or actual =="\n" or actual == "\r" or actual =='\t':
                     self.estado = 0
@@ -97,10 +97,15 @@ class LexicoVentas():
                 else:
                     if self.Reservada():
                         self.AgregarToken(self.tipo.name)
+                        #if actual == " ":
+                        #    self.estado = 0
+                        #elif actual == ":":
+                        #    self.estado =7
                         i -= 1
                         continue
                     else:
                         self.AgregarToken(TypeTokenVentas.LETRAS.name)
+                        self.estado = 7
                         i -= 1
                         continue
             if self.estado == 2:
@@ -134,8 +139,9 @@ class LexicoVentas():
                     self.AgregarToken(TypeTokenVentas.ENTERO.name)
                     i-= 1
                     continue
-            if self.estado == 6:
+            '''if self.estado == 6:
                 if actual == ":":
+                    self.estado = 6
                     self.lexema += actual 
                     continue
                 else:
@@ -146,11 +152,12 @@ class LexicoVentas():
                 if actual.isdigit():
                     self.estado = 7
                     self.lexema += actual
+                    print(actual)
                     continue
                 else:  
                     self.AgregarToken(TypeTokenVentas.AÑO.name)
                     i -= 1
-                    continue
+                    continue'''
 
 
     def AgregarToken(self, tipo):
@@ -173,6 +180,9 @@ class LexicoVentas():
     
     lista_p = []
     lista_c = []
+    lista = []
+    total = 0
+    totla_precio=[]
     def GuardarDatos(self):
         longitud = len(self.tokens)
 
@@ -185,31 +195,33 @@ class LexicoVentas():
             elif self.tokens[i].type == TypeTokenVentas.PRODUCTO.name:
                 self.producto = self.tokens[i].lexema
                 self.lista.append(self.producto)
-            elif self.tokens[i].type == TypeTokenVentas.AÑO.name:
-                self.año = self.tokens[i].lexema
+            #elif 
+            #elif self.tokens[i].type == TypeTokenVentas.AÑO.name:
+            #    self.año = self.tokens[i].lexema
                 #self.tokens.append(Token(self.año, TypeTokenVentas.AÑO.name))
                 #self.AgregarToken(TypeTokenVentas.AÑO.name)
         lon = len(self.ayuda)
         for j in range (lon):
             if j== 0:
-                self.precio = self.ayuda[j]
+                '''self.precio = self.ayuda[j]
                 self.tokens.append(Token(self.precio, TypeTokenVentas.PRECIO.name))
-                self.lista_p.append(self.precio)
+                self.lista_p.append(self.precio)'''
+                self.año = self.ayuda[j]
+                self.tokens.append(Token(self.año, TypeTokenVentas.AÑO.name))
             elif (j%2) == 0:
-                self.precio = self.ayuda[j]
-                self.tokens.append(Token(self.precio, TypeTokenVentas.PRECIO.name))
-                self.lista_p.append(self.precio)
-            else:
                 self.cantidad = self.ayuda[j]
-                self.tokens.append(Token(self.cantidad,TypeTokenVentas.CANTIDAD.name))
+                self.tokens.append(Token(self.cantidad, TypeTokenVentas.PRECIO.name))
                 self.lista_c.append(self.cantidad)
-        print(self.todo)
-        print(self.mes)
-        print(self.año)
-        print(self.cantidad)
-        print(self.precio)
-        print(self.lista)
-        print(self.ayuda)
-        print(self.lista_c)
+            else:
+                self.precio = self.ayuda[j]
+                self.tokens.append(Token(self.precio,TypeTokenVentas.CANTIDAD.name))
+                self.lista_p.append(self.precio)
+                #self.total = self.cantidad * self.precio
+                #self.totla_precio.append(self.total)
+    
+        print(self.total)
+        print(self.total)
         print(self.lista_p)
-
+        print(self.lista)
+        print(self.lista_c)
+        print(self.año)

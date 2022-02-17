@@ -18,12 +18,12 @@ def Leer_Intrucciones():
     return texto1
 
 def Menu():
-    print("MENU ANALIZADOR")
-    print("--- Seleccione una opcion ---")
-    print('1. Cargar Data')
-    print('2. Cargar Intrucciones')
-    print('3. Analizar')
-    print('4. Obtener Grafica')
-    print('5. Salir')
+    print("-----------------MENU ANALIZADOR------------------")
+    print("\t --- Seleccione una opcion ---")
+    print('\t       1. Cargar Data')
+    print('\t       2. Cargar Intrucciones')
+    print('\t       3. Analizar')
+    print('\t       4. Obtener Grafica')
+    print('\t       5. Salir')
     salida = int(input("Ingrese su opcion:"))
     return salida

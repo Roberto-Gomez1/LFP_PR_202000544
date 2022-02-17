@@ -8,6 +8,9 @@ class LexicoInstrucciones():
 
     nombre_grafica = ''
     tipo_grafica = ''
+    titulo_grafica=''
+    titulox_g=''
+    tituloy_g=''
 
     def __init__(self,entrada):
         self.estado = 0
@@ -55,7 +58,7 @@ class LexicoInstrucciones():
                     self.AgregarToken(TypeToken.DOS_PUNTOS.name)
                     continue
                 elif actual =='&':
-                    print( 'ANALISIS TERMINADO')
+                    print( 'ANALISIS INSTRUCCIONES TERMINADO')
                     continue
                 elif actual == ' ' or actual =="\n" or actual == "\r" or actual =='\t':
                     self.estado = 0
@@ -120,7 +123,8 @@ class LexicoInstrucciones():
         for token in self.tokens:
             print(token.lexema + " -> Tipo: " + str(token.type))
     
-
+    aux_tipoG= ''
+    tipog = []
     def GuardarDatos(self):
         longitud = len(self.tokens)
         for i in range(longitud):
@@ -130,5 +134,16 @@ class LexicoInstrucciones():
             elif self.tokens[i].type == TypeToken.GRAFICA.name:
                 i = i + 1
                 self.tipo_grafica = self.tokens[i].lexema
-        print(self.nombre_grafica)
-        print(self.tipo_grafica)
+            elif self.tokens[i].type == TypeToken.TITULO.name:
+                i = i+1
+                self.titulo_grafica = self.tokens[i].lexema
+            elif self.tokens[i].type == TypeToken.TITULO_X.name:
+                i = i+1
+                self.titulox_g = self.tokens[i].lexema
+            elif self.tokens[i].type == TypeToken.TITULO_Y.name:
+                i = i+1
+                self.tituloy_g = self.tokens[i].lexema
+                
+        a = self.tipo_grafica.replace('"','')
+        self.aux_tipoG = a.upper();
+        self.tipog.append(self.aux_tipoG)

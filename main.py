@@ -1,4 +1,5 @@
 from LexicoVentas import LexicoVentas
+from Graficadoras import Graficadora
 from help import Menu, Leer_Info, Leer_Intrucciones
 from LexicoInstrucciones import LexicoInstrucciones
 from tkinter import Tk
@@ -9,7 +10,7 @@ def main():
     txt_intrucciones1 = ""
     opcion = Menu()
     lexico_intrucciones = None
-    while opcion != 4 :
+    while opcion != 5 :
         if opcion == 1:
             txt_data = Leer_Info()
             print(txt_data)
@@ -21,10 +22,12 @@ def main():
             lexico_ventas = LexicoVentas(txt_data)
             lexico_ventas.printTokens()
             lexico_ventas.GuardarDatos()
-            #lexico_intrucciones = LexicoInstrucciones(txt_intrucciones)
+            lexico_intrucciones = LexicoInstrucciones(txt_intrucciones)
             #lexico_intrucciones.printTokens()
-            #lexico_intrucciones.GuardarDatos()
+            lexico_intrucciones.GuardarDatos()
         elif opcion ==4:
+            prueb = Graficadora.general()
+        elif opcion == 5:
             print("Terminando el programa...")
         opcion = Menu();
 
