@@ -1,6 +1,7 @@
+from numpy import double
 from Token import Token
 from TypeTokenVentas import TypeTokenVentas
-
+from Objetos import ObjetoTabla, Objeto
 
 class LexicoVentas():
     
@@ -181,14 +182,20 @@ class LexicoVentas():
     lista_p = []
     lista_c = []
     lista = []
-    total = 0
-    totla_precio=[]
+    lista_total=[]
+    lista_año=[]
+    lista_mes=[]
+    lista_original=[]
+    lista_mayor=[]
+    lista_menor=[]
+    original=[]
     def GuardarDatos(self):
         longitud = len(self.tokens)
 
         for i in range(longitud):
             if self.tokens[i].type == TypeTokenVentas.MES.name:
                 self.mes = self.tokens[i].lexema
+                self.lista_mes.append(self.mes)
             elif self.tokens[i].type == TypeTokenVentas.ENTERO.name:
                 self.todo = self.tokens[i].lexema
                 self.ayuda.append(self.todo)
@@ -208,6 +215,7 @@ class LexicoVentas():
                 self.lista_p.append(self.precio)'''
                 self.año = self.ayuda[j]
                 self.tokens.append(Token(self.año, TypeTokenVentas.AÑO.name))
+                self.lista_año.append(self.año)
             elif (j%2) == 0:
                 self.cantidad = self.ayuda[j]
                 self.tokens.append(Token(self.cantidad, TypeTokenVentas.PRECIO.name))
@@ -216,12 +224,27 @@ class LexicoVentas():
                 self.precio = self.ayuda[j]
                 self.tokens.append(Token(self.precio,TypeTokenVentas.CANTIDAD.name))
                 self.lista_p.append(self.precio)
-                #self.total = self.cantidad * self.precio
-                #self.totla_precio.append(self.total)
+
+        a= len(self.lista_c)
+        for p in range(a):
+            producto = double(self.lista_c[p]) * double(self.lista_p[p])
+            self.lista_total.append(producto)
+        
+        for f in range(a):
+            self.lista_original.append(Objeto(self.lista[f],self.lista_p[f],self.lista_c[f],self.lista_total[f]))
+            self.original.append(Objeto(self.lista[f],self.lista_p[f],self.lista_c[f],self.lista_total[f]))
+            self.lista_mayor.append(Objeto(self.lista[f],self.lista_p[f],int(self.lista_c[f]),self.lista_total[f]))
+            self.lista_menor.append(Objeto(self.lista[f],self.lista_p[f],int(self.lista_c[f]),self.lista_total[f]))
+        self.lista_original.sort(key=lambda zz:zz.total,reverse=True)
+        self.lista_mayor.sort(key=lambda x:x.cantidad,reverse=True)
+        self.lista_menor.sort(key=lambda yy:yy.cantidad,reverse=False)
+        print(self.lista_original)
+        print(self.lista_mayor)
+        print(self.lista_menor)
+        #print(self.lista_original)
+        #print(self.lista_total)
+        #print(self.lista_p)
+        #print(self.lista)
+        #print(self.lista_c)
+        #print(self.año)
     
-        print(self.total)
-        print(self.total)
-        print(self.lista_p)
-        print(self.lista)
-        print(self.lista_c)
-        print(self.año)

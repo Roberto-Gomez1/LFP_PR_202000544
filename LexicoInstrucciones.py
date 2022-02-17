@@ -124,7 +124,16 @@ class LexicoInstrucciones():
             print(token.lexema + " -> Tipo: " + str(token.type))
     
     aux_tipoG= ''
-    tipog = []
+    aux_nombreG= ''
+    aux_titulo= ''
+    aux_titulox= ''
+    aux_tituloy= ''
+    tipog= []
+    tipon= []
+    tipotit= []
+    tipotitx= []
+    tipotity = []
+
     def GuardarDatos(self):
         longitud = len(self.tokens)
         for i in range(longitud):
@@ -143,7 +152,28 @@ class LexicoInstrucciones():
             elif self.tokens[i].type == TypeToken.TITULO_Y.name:
                 i = i+1
                 self.tituloy_g = self.tokens[i].lexema
-                
+
         a = self.tipo_grafica.replace('"','')
         self.aux_tipoG = a.upper();
         self.tipog.append(self.aux_tipoG)
+
+        b= self.nombre_grafica.replace('"','')
+        self.aux_nombreG = b.upper();
+        self.tipon.append(self.aux_nombreG)
+        #print(self.tipon)
+
+        c = self.titulo_grafica.replace('"','')
+        self.aux_titulo = c.upper();
+        self.tipotit.append(self.aux_titulo)
+        #print(self.tipotit)
+
+        d=self.titulox_g.replace('"','')
+        self.aux_titulox = d.upper();
+        self.tipotitx.append(self.aux_titulox)
+        #print(self.tipotitx)
+
+        e= self.tituloy_g.replace('"','')
+        self.aux_tituloy = e.upper();
+        self.tipotity.append(self.aux_tituloy)
+        #print(self.tipotity)
+        
