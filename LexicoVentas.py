@@ -1,7 +1,7 @@
 from numpy import double
 from Token import Token
 from TypeTokenVentas import TypeTokenVentas
-from Objetos import ObjetoTabla, Objeto
+from Objetos import  Objeto
 
 class LexicoVentas():
     
