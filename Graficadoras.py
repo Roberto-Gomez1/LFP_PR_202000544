@@ -15,15 +15,15 @@ class Graficadora():
         aux4 = LexicoInstrucciones.tipotity[0]
         auxaño = LexicoVentas.lista_mes[0]
         auxmes = LexicoVentas.lista_año[0]
-        if aux1 == '':
-            aux1 =  auxmes + ' - ' + auxaño
-        if aux == "PIE":
+        if aux2 == '':
+            aux2 =  auxmes + ' - ' + auxaño
+        if aux == "PIE" and aux1 != "":
             Graficadora.g_pie(aux2,aux1)
-        elif aux == "BARRAS":
+        elif aux == "BARRAS"and aux1 != "":
             Graficadora.g_barra(aux2,aux1,aux3,aux4)
-        elif aux == "LINEAS":
+        elif aux == "LINEAS"and aux1 != "":
             Graficadora.g_linea(aux2,aux1,aux3,aux4)
-        elif aux == "":
+        elif aux == "" or aux1 == "":
             print("No tiene Instrucciones para la grafica")
         else: 
             print("Ocurrio un error, siga el orden del menu")
