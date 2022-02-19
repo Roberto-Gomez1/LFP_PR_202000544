@@ -139,19 +139,36 @@ class LexicoInstrucciones():
         for i in range(longitud):
             if self.tokens[i].type == TypeToken.NOMBRE.name:
                 i = i + 1
-                self.nombre_grafica = self.tokens[i].lexema
+                if self.tokens[i].lexema == ":":
+                    self.nombre_grafica = self.tokens[i+1].lexema
+                else:
+                    self.nombre_grafica = self.tokens[i].lexema
             elif self.tokens[i].type == TypeToken.GRAFICA.name:
                 i = i + 1
-                self.tipo_grafica = self.tokens[i].lexema
+                if self.tokens[i].lexema == ":":
+                    self.tipo_grafica = self.tokens[i+1].lexema
+                else:
+                    self.tipo_grafica = self.tokens[i].lexema
             elif self.tokens[i].type == TypeToken.TITULO.name:
                 i = i+1
-                self.titulo_grafica = self.tokens[i].lexema
+                if self.tokens[i].lexema == ":":
+                    self.titulo_grafica = self.tokens[i+1].lexema
+                else:
+                    self.titulo_grafica = self.tokens[i].lexema
             elif self.tokens[i].type == TypeToken.TITULO_X.name:
                 i = i+1
-                self.titulox_g = self.tokens[i].lexema
+                if self.tokens[i].lexema == ":":
+                    self.titulox_g = self.tokens[i+1].lexema
+                else:
+                    self.titulox_g = self.tokens[i].lexema
+
             elif self.tokens[i].type == TypeToken.TITULO_Y.name:
                 i = i+1
-                self.tituloy_g = self.tokens[i].lexema
+                if self.tokens[i].lexema == ":":
+                    self.tituloy_g = self.tokens[i+1].lexema
+                else:
+                    self.tituloy_g = self.tokens[i].lexema
+
 
         a = self.tipo_grafica.replace('"','')
         self.aux_tipoG = a.upper();
